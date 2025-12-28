@@ -21,7 +21,6 @@
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
         
-        /* Chat Bubble Style */
         .chat-bubble { max-width: 85%; border-radius: 16px; padding: 10px 14px; position: relative; font-size: 0.9rem; line-height: 1.4; }
         .chat-student { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; border-bottom-right-radius: 4px; margin-left: auto; box-shadow: 0 2px 5px rgba(59, 130, 246, 0.3); }
         .chat-guru { background-color: #ffffff; color: #1f2937; border-bottom-left-radius: 4px; margin-right: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #f3f4f6; }
@@ -32,92 +31,81 @@
     <!-- MODAL LOGOUT -->
     <div id="modalLogout" class="hidden fixed inset-0 bg-black/60 z-[120] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl modal-enter relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blue-50 to-transparent -z-10"></div>
             <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4 text-red-400 text-3xl shadow-sm border border-red-100">
                 <i class="fas fa-heart"></i>
             </div>
-            <h3 class="text-lg font-bold text-gray-800 mb-2">Sampai Jumpa, Nak!</h3>
-            <p class="text-gray-600 text-sm mb-6 leading-relaxed">Terima kasih sudah berkunjung. Jaga dirimu baik-baik ya, kami selalu ada untukmu.</p>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Sampai Jumpa Nak!</h3>
+            <p class="text-gray-600 text-sm mb-6 leading-relaxed">Terima kasih sudah berkunjung hari ini. Ingatlah bahwa kamu tidak sendirian. Jaga dirimu baik-baik ya, kami selalu ada untukmu.</p>
             <div class="flex gap-3">
                 <button onclick="closeLogoutModal()" class="flex-1 py-3 rounded-xl border border-gray-200 text-gray-600 font-bold text-sm hover:bg-gray-50">Batal</button>
-                <button onclick="performLogout()" class="flex-1 bg-red-500 text-white font-bold py-3 rounded-xl hover:bg-red-600 shadow-lg shadow-red-200 text-sm">Keluar Sekarang</button>
+                <button onclick="performLogout()" class="flex-1 bg-red-500 text-white font-bold py-3 rounded-xl hover:bg-red-600 shadow-lg shadow-red-200 text-sm">Keluar</button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL SELAMAT DATANG -->
+    <!-- MODAL SESSION EXPIRED -->
+    <div id="modalSession" class="hidden fixed inset-0 bg-black/80 z-[150] flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl relative overflow-hidden">
+            <div class="w-16 h-16 bg-yellow-50 rounded-full flex items-center justify-center mx-auto mb-4 text-yellow-500 text-3xl">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Yah Sesi Berakhir</h3>
+            <p class="text-gray-600 text-sm mb-6 leading-relaxed">Akun ini telah login di perangkat lain. Untuk keamanan, sesi ini dihentikan.</p>
+            <button onclick="performLogout()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl">Login Kembali</button>
+        </div>
+    </div>
+
+    <!-- MODAL WELCOME, SUCCESS, ETC (Sama seperti sebelumnya) -->
     <div id="modalWelcome" class="hidden fixed inset-0 bg-black/60 z-[110] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl modal-enter relative overflow-hidden border-4 border-white">
             <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blue-50 to-transparent -z-10"></div>
-            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-yellow-400 text-4xl shadow-lg border-2 border-yellow-100">
-                <i class="fas fa-crown"></i>
-            </div>
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-yellow-400 text-4xl shadow-lg border-2 border-yellow-100"><i class="fas fa-crown"></i></div>
             <h3 class="text-xl font-bold text-gray-800 mb-2">Selamat Datang, Anak Hebat!</h3>
             <div class="bg-blue-50 p-4 rounded-2xl mb-6 text-left border border-blue-100">
                 <p class="text-gray-700 text-sm mb-2 leading-relaxed">Terima kasih telah percaya kepada kami. Keberanianmu untuk hadir di sini adalah langkah awal yang luar biasa.</p>
-                <div class="flex items-start gap-2 text-xs text-blue-800 font-semibold bg-blue-100 p-2 rounded-lg">
-                    <i class="fas fa-user-secret mt-0.5"></i>
-                    <span>Tenang saja, setiap cerita dan identitasmu dijamin 100% RAHASIA. Kami siap mendengarkanmu.</span>
-                </div>
+                <div class="flex items-start gap-2 text-xs text-blue-800 font-semibold bg-blue-100 p-2 rounded-lg"><i class="fas fa-user-secret mt-0.5"></i><span>Tenang saja, setiap cerita dan identitasmu dijamin 100% RAHASIA. Kami siap mendengarkanmu.</span></div>
             </div>
-            <button onclick="closeWelcomeModal()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-200 transform active:scale-95">Siap, Saya Mengerti <i class="fas fa-arrow-right ml-1"></i></button>
+            <button onclick="closeWelcomeModal()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition shadow-lg">Siap, Saya Mengerti</button>
         </div>
     </div>
 
-    <!-- MODAL SUKSES -->
     <div id="modalSuccess" class="hidden fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl modal-enter relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 to-purple-500"></div>
-            <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-500 text-3xl animate-bounce">
-                <i class="fas fa-hand-holding-heart"></i>
-            </div>
+            <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-500 text-3xl animate-bounce"><i class="fas fa-hand-holding-heart"></i></div>
             <h3 id="modalTitle" class="text-xl font-bold text-gray-800 mb-2">Terima Kasih, Nak!</h3>
-            <p id="modalDesc" class="text-gray-600 text-sm mb-6 leading-relaxed">Suaramu sangat berharga. Kami sudah menerima ceritamu dan akan kami jaga dengan baik.</p>
-            <button onclick="closeModal()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition">Sama-sama, Bu Guru</button>
+            <p id="modalDesc" class="text-gray-600 text-sm mb-6 leading-relaxed">Suaramu sangat berharga.</p>
+            <button onclick="closeModal()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition">Sama-sama, Bapak Ibu Guru</button>
         </div>
     </div>
 
-    <!-- MOBILE CONTAINER -->
+    <!-- MAIN CONTAINER -->
     <div class="w-full sm:max-w-md bg-white sm:rounded-2xl shadow-2xl overflow-hidden relative h-screen sm:h-[700px] flex flex-col">
-        
         <!-- HEADER -->
         <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white p-6 text-center sm:rounded-b-3xl shadow-lg z-10 relative">
-            <div id="headerDate" class="absolute top-4 right-4 text-[10px] font-medium bg-white/20 px-2 py-1 rounded-full backdrop-blur-sm">Min, 01 Jan 2024</div>
-            <div class="w-14 h-14 bg-white rounded-full mx-auto flex items-center justify-center mb-2 shadow-md border-2 border-blue-200">
-                <i class="fas fa-school text-blue-700 text-2xl"></i>
-            </div>
+            <div id="headerDate" class="absolute top-4 right-4 text-[10px] font-medium bg-white/20 px-2 py-1 rounded-full backdrop-blur-sm">...</div>
+            <div class="w-14 h-14 bg-white rounded-full mx-auto flex items-center justify-center mb-2 shadow-md border-2 border-blue-200"><i class="fas fa-school text-blue-700 text-2xl"></i></div>
             <h1 class="text-lg font-bold tracking-wide">LOKER IDE & RASA</h1>
             <p class="text-[10px] opacity-90 uppercase tracking-widest bg-blue-900/30 inline-block px-3 py-1 rounded-full mt-1">UPT SPF SMP Negeri 16 Makassar</p>
         </header>
 
         <!-- CONTENT AREA -->
         <main class="flex-1 p-6 overflow-y-auto no-scrollbar relative bg-slate-50">
-            
-            <div id="toast" class="hidden fixed top-20 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-4 py-2 rounded-full shadow-xl z-50 text-xs flex items-center gap-2 whitespace-nowrap">
-                <i class="fas fa-info-circle"></i> <span id="toastMsg">Notifikasi</span>
-            </div>
+            <div id="toast" class="hidden fixed top-20 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-4 py-2 rounded-full shadow-xl z-50 text-xs flex items-center gap-2 whitespace-nowrap"><i class="fas fa-info-circle"></i> <span id="toastMsg">Notifikasi</span></div>
 
-            <!-- LOGIN SCREEN -->
+            <!-- LOGIN -->
             <div id="view-login" class="space-y-6 animate-fade-in pb-10">
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-blue-50 text-center">
-                    <p class="text-blue-600 font-bold text-sm mb-2">✨ "Setiap langkah kecilmu berharga."</p>
-                    <p class="text-xs text-gray-500 leading-relaxed"><b>Loker Ide & Rasa</b> adalah ruang aman bagimu untuk menyampaikan aspirasi, inovasi, dan curahan hati tanpa rasa cemas. Mari berbagi cerita!</p>
-                </div>
-                <div class="text-left px-2">
-                    <h2 class="text-gray-800 font-bold text-xl">Masuk Akun</h2>
-                    <p class="text-gray-400 text-xs">Masukkan identitas siswamu.</p>
-                </div>
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-blue-50 text-center"><p class="text-blue-600 font-bold text-sm mb-2">✨ "Setiap langkah kecilmu berharga."</p><p class="text-xs text-gray-500">Loker Ide dan Rasa adalah ruang aman bagimu untuk menyampaikan aspirasi, inovasi, dan curahan hati tanpa rasa cemas. Mari berbagi cerita!</p></div>
                 <form onsubmit="handleLogin(event)" class="space-y-4">
-                    <div class="relative"><i class="fas fa-user absolute left-4 top-3.5 text-gray-400 text-sm"></i><input type="text" id="loginUser" class="w-full pl-10 p-3 bg-white border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none transition" placeholder="Username" required></div>
-                    <div class="relative"><i class="fas fa-lock absolute left-4 top-3.5 text-gray-400 text-sm"></i><input type="password" id="loginPass" class="w-full pl-10 p-3 bg-white border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none transition" placeholder="Password" required></div>
-                    <button type="submit" id="btnLogin" class="w-full bg-blue-600 text-white font-bold py-3.5 rounded-xl hover:bg-blue-700 shadow-lg flex justify-center items-center gap-2 transition transform active:scale-95">MASUK SEKARANG</button>
+                    <div class="relative"><i class="fas fa-user absolute left-4 top-3.5 text-gray-400 text-sm"></i><input type="text" id="loginUser" class="w-full pl-10 p-3 bg-white border border-gray-200 rounded-xl text-sm" placeholder="Username" required></div>
+                    <div class="relative"><i class="fas fa-lock absolute left-4 top-3.5 text-gray-400 text-sm"></i><input type="password" id="loginPass" class="w-full pl-10 p-3 bg-white border border-gray-200 rounded-xl text-sm" placeholder="Password" required></div>
+                    <button type="submit" id="btnLogin" class="w-full bg-blue-600 text-white font-bold py-3.5 rounded-xl hover:bg-blue-700 shadow-lg">MASUK SEKARANG YAH</button>
                 </form>
-                <div class="text-center mt-4"><p class="text-xs text-gray-500">Belum punya akun? <a href="#" onclick="switchView('view-signup')" class="text-blue-600 font-bold">Daftar disini</a></p></div>
+                <div class="text-center mt-4"><p class="text-xs text-gray-500">Kamu Belum punya akun? <a href="#" onclick="switchView('view-signup')" class="text-blue-600 font-bold">Sini Daftar</a></p></div>
             </div>
 
-            <!-- SIGNUP SCREEN -->
+            <!-- SIGNUP -->
             <div id="view-signup" class="hidden space-y-4 pb-10">
-                <div class="flex items-center gap-3 mb-4"><button onclick="switchView('view-login')" class="w-8 h-8 rounded-full bg-white shadow flex items-center justify-center text-gray-500"><i class="fas fa-arrow-left text-sm"></i></button><h2 class="font-bold text-lg text-gray-800">Daftar Siswa Baru</h2></div>
+                <div class="flex items-center gap-3 mb-4"><button onclick="switchView('view-login')" class="w-8 h-8 rounded-full bg-white shadow flex items-center justify-center text-gray-500"><i class="fas fa-arrow-left text-sm"></i></button><h2 class="font-bold text-lg text-gray-800">Daftar Siswa</h2></div>
                 <form onsubmit="handleSignup(event)" class="space-y-3">
                     <input type="text" id="regUser" placeholder="Buat Username" class="w-full p-3 rounded-xl border text-sm" required>
                     <input type="password" id="regPass" placeholder="Buat Password" class="w-full p-3 rounded-xl border text-sm" required>
@@ -130,23 +118,14 @@
 
             <!-- DASHBOARD SISWA -->
             <div id="view-dashboard-siswa" class="hidden space-y-4 pb-16">
-                <!-- User Card (UPDATED) -->
                 <div class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-blue-100">
                     <div class="flex items-center gap-3">
-                        <!-- Icon Gender Dinamis -->
-                        <div id="userIconContainer" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-lg">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <div>
-                            <!-- Sapaan Waktu Dinamis -->
-                            <p id="greetingText" class="text-[10px] text-blue-600 font-bold uppercase tracking-wider">Selamat Datang,</p>
-                            <h3 id="displayNama" class="font-bold text-gray-800 text-sm line-clamp-1">Nama Siswa</h3>
-                        </div>
+                        <div id="userIconContainer" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-lg"><i class="fas fa-user-graduate"></i></div>
+                        <div><p id="greetingText" class="text-[10px] text-blue-600 font-bold uppercase tracking-wider">Selamat Datang,</p><h3 id="displayNama" class="font-bold text-gray-800 text-sm line-clamp-1">Siswa</h3></div>
                     </div>
                     <button onclick="confirmLogout()" class="text-red-400 p-2 hover:bg-red-50 rounded-full transition"><i class="fas fa-sign-out-alt"></i></button>
                 </div>
 
-                <!-- NAVIGATION TABS -->
                 <div class="flex gap-1 overflow-x-auto bg-white p-1.5 rounded-xl shadow-sm border border-gray-100 sticky top-0 z-20 no-scrollbar">
                     <button onclick="setTab('Beranda')" id="tabBeranda" class="flex-1 min-w-[60px] py-2.5 text-[10px] font-bold rounded-lg text-blue-600 bg-blue-50 flex flex-col items-center"><i class="fas fa-home mb-1 text-sm"></i>Home</button>
                     <button onclick="setTab('Ide')" id="tabIde" class="flex-1 min-w-[60px] py-2.5 text-[10px] font-bold rounded-lg text-gray-400 flex flex-col items-center"><i class="fas fa-lightbulb mb-1 text-sm"></i>Ide</button>
@@ -155,79 +134,107 @@
                     <button onclick="setTab('History')" id="tabHistory" class="flex-1 min-w-[60px] py-2.5 text-[10px] font-bold rounded-lg text-gray-400 flex flex-col items-center"><i class="fas fa-history mb-1 text-sm"></i>Riwayat</button>
                 </div>
 
-                <!-- CONTENT: BERANDA -->
+                <!-- SISWA: BERANDA -->
                 <div id="content-beranda" class="space-y-4 animate-fade-in">
                     <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-5 text-white shadow-lg relative overflow-hidden">
                         <div class="absolute right-0 top-0 w-24 h-24 bg-white opacity-10 rounded-full -mr-4 -mt-4"></div>
                         <h3 class="font-bold text-lg mb-1">Monitoring Aktivitas</h3>
-                        <p class="text-xs opacity-90 mb-4">Pantau semua Ide, Rasa, dan Konsultasimu di sini.</p>
-                        <button onclick="setTab('History')" class="bg-white text-blue-600 text-xs font-bold px-4 py-2 rounded-lg shadow-sm">Cek Riwayat Lengkap <i class="fas fa-arrow-right ml-1"></i></button>
+                        <p class="text-xs opacity-90 mb-4">Pantau semua Ide, Rasa, dan Konsultasimu.</p>
+                        <button onclick="setTab('History')" class="bg-white text-blue-600 text-xs font-bold px-4 py-2 rounded-lg shadow-sm">Cek Riwayat <i class="fas fa-arrow-right ml-1"></i></button>
                     </div>
-
                     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
-                        <h4 class="font-bold text-gray-800 text-sm mb-3 border-b pb-2 flex items-center gap-2"><i class="fas fa-chalkboard-teacher text-blue-500"></i> Tim Guru BK Kami</h4>
+                        <h4 class="font-bold text-gray-800 text-sm mb-3 border-b pb-2"><i class="fas fa-chalkboard-teacher text-blue-500"></i> Tim Guru BK</h4>
                         <div class="space-y-3">
-                            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition"><div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600"><i class="fas fa-user-tie"></i></div><div><p class="text-xs font-bold text-gray-800">Muhammad Hasratul, S.Pd.,Gr.,M.M</p><p class="text-[10px] text-gray-500">Konselor Sekolah</p></div></div>
-                            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition"><div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600"><i class="fas fa-user"></i></div><div><p class="text-xs font-bold text-gray-800">Jumliana, S.Pd.,Gr</p><p class="text-[10px] text-gray-500">Konselor Sekolah</p></div></div>
-                            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition"><div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600"><i class="fas fa-user"></i></div><div><p class="text-xs font-bold text-gray-800">Hamriana, S.Pd.,Gr</p><p class="text-[10px] text-gray-500">Konselor Sekolah</p></div></div>
+                            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg"><div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center"><i class="fas fa-user-tie"></i></div><div><p class="text-xs font-bold">Muhammad Hasratul, S.Pd.,Gr.,M.M</p><p class="text-[10px] text-gray-500">Konselor</p></div></div>
+                            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg"><div class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center"><i class="fas fa-user"></i></div><div><p class="text-xs font-bold">Jumliana, S.Pd.,Gr</p><p class="text-[10px] text-gray-500">Konselor</p></div></div>
+                            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg"><div class="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center"><i class="fas fa-user"></i></div><div><p class="text-xs font-bold">Hamriana, S.Pd.,Gr</p><p class="text-[10px] text-gray-500">Konselor</p></div></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- CONTENT: FORM INPUT -->
+                <!-- SISWA: FORM -->
                 <div id="content-form" class="hidden space-y-4 animate-fade-in">
                     <div id="bannerInfo" class="p-4 rounded-xl text-sm border flex gap-3 items-start shadow-sm"></div>
                     <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 space-y-3">
-                        <input type="text" id="inputJudul" placeholder="Judul" class="w-full p-3 rounded-lg border bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none text-sm transition">
-                        <textarea id="inputIsi" rows="5" placeholder="Ceritakan detailnya..." class="w-full p-3 rounded-lg border bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none text-sm transition"></textarea>
+                        <input type="text" id="inputJudul" placeholder="Judul" class="w-full p-3 rounded-lg border bg-gray-50 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                        <textarea id="inputIsi" rows="5" placeholder="Ceritakan detailnya..." class="w-full p-3 rounded-lg border bg-gray-50 text-sm focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
                         <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg border border-dashed border-gray-300">
                             <input type="checkbox" id="inputAnonim" class="w-4 h-4 text-blue-600 rounded">
-                            <label for="inputAnonim" class="text-xs text-gray-600 font-medium">Kirim sebagai <b>Anonim</b> (Nama disembunyikan)</label>
+                            <label for="inputAnonim" class="text-xs text-gray-600 font-medium">Kirim sebagai <b>Anonim</b> (Rahasia)</label>
                         </div>
                     </div>
-                    <button onclick="submitLaporan()" id="btnSubmit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-200 transition transform active:scale-95">KIRIM SEKARANG <i class="fas fa-paper-plane ml-1"></i></button>
+                    <button onclick="submitLaporan()" id="btnSubmit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition transform active:scale-95">KIRIM SEKARANG <i class="fas fa-paper-plane ml-1"></i></button>
                 </div>
 
-                <!-- CONTENT: CHAT KONSULTASI (UPDATED BUTTON LAYOUT) -->
+                <!-- SISWA: CHAT -->
                 <div id="content-chat" class="hidden flex flex-col h-[450px] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                     <div class="bg-blue-50 p-3 border-b border-blue-100 flex items-center gap-2 justify-between">
-                        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></div><div><span class="text-xs font-bold text-blue-800 block">Live Chat Guru BK</span><span class="text-[9px] text-blue-600">Online</span></div></div>
-                        <i class="fas fa-headset text-blue-300 text-xl"></i>
+                        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></div><div><span class="text-xs font-bold text-blue-800 block">Live Chat Guru BK</span><span class="text-[9px] text-blue-600">Online</span></div></div><i class="fas fa-headset text-blue-300 text-xl"></i>
                     </div>
-                    <div id="chatBox" class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50/50">
-                        <p class="text-center text-xs text-gray-400 italic bg-gray-100 py-1 px-3 rounded-full mx-auto w-fit mt-4">Privasi chat terjamin.</p>
-                    </div>
-                    <!-- INPUT CHAT BARU (Tombol di Tengah) -->
+                    <div id="chatBox" class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50/50"><p class="text-center text-xs text-gray-400 italic mt-4">Privasi chat terjamin.</p></div>
                     <div class="p-4 bg-white border-t flex flex-col gap-3 items-center">
-                        <input type="text" id="chatInput" class="w-full bg-gray-100 border-0 p-3 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none transition" placeholder="Tulis pesan untuk Guru BK...">
-                        <button onclick="sendChat()" id="btnSendChat" class="w-full bg-blue-600 text-white py-2.5 rounded-full shadow-md hover:bg-blue-700 transition text-sm font-bold flex items-center justify-center gap-2 transform active:scale-95">
-                            <i class="fas fa-paper-plane"></i> Kirim Konsultasi
-                        </button>
+                        <input type="text" id="chatInput" class="w-full bg-gray-100 border-0 p-3 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Tulis pesan...">
+                        <button onclick="sendChat()" id="btnSendChat" class="w-full bg-blue-600 text-white py-2.5 rounded-full shadow-md text-sm font-bold flex items-center justify-center gap-2 transition active:scale-95"><i class="fas fa-paper-plane"></i> Kirim Konsultasi</button>
                     </div>
                 </div>
 
-                <!-- CONTENT: HISTORY -->
+                <!-- SISWA: HISTORY -->
                 <div id="content-history" class="hidden space-y-3"><div id="historyList" class="pb-10"></div></div>
             </div>
 
             <!-- DASHBOARD GURU -->
-            <div id="view-dashboard-guru" class="hidden space-y-4 pb-16">
-                <!-- (Same as before) -->
-                <div class="flex justify-between items-center mb-4 bg-white p-4 rounded-xl shadow-sm">
-                    <div><h2 class="font-bold text-gray-800 text-sm"><i class="fas fa-chalkboard-teacher text-blue-600 mr-2"></i> Ruang BK</h2><p class="text-[10px] text-gray-500">Panel Admin Guru</p></div>
-                    <button onclick="handleLogout()" class="text-red-500 text-xs font-bold border border-red-200 px-3 py-1 rounded-full">Keluar</button>
+            <div id="view-dashboard-guru" class="hidden space-y-4 pb-16 animate-fade-in">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-blue-100 mb-4 flex justify-between items-start">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xl shadow-md"><i class="fas fa-user-tie"></i></div>
+                        <div>
+                            <p class="text-[10px] text-green-500 font-bold uppercase tracking-wider flex items-center gap-1"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Online</p>
+                            <h3 id="guruNameDisplay" class="font-bold text-gray-800 text-sm">Guru BK</h3>
+                            <p class="text-[10px] text-gray-500">Administrator</p>
+                        </div>
+                    </div>
+                    <button onclick="confirmLogout()" class="text-red-400 p-2 hover:bg-red-50 rounded-full transition border border-red-100"><i class="fas fa-sign-out-alt"></i></button>
                 </div>
+
+                <!-- NEW: STATISTIK DASHBOARD -->
+                <div class="grid grid-cols-3 gap-2 mb-4">
+                    <div class="bg-white p-3 rounded-xl shadow-sm border-b-4 border-yellow-400 text-center">
+                        <p class="text-[10px] text-gray-500 uppercase font-bold">Ide</p>
+                        <h3 id="statIde" class="text-xl font-bold text-gray-800">0</h3>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl shadow-sm border-b-4 border-pink-400 text-center">
+                        <p class="text-[10px] text-gray-500 uppercase font-bold">Rasa</p>
+                        <h3 id="statRasa" class="text-xl font-bold text-gray-800">0</h3>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl shadow-sm border-b-4 border-blue-400 text-center">
+                        <p class="text-[10px] text-gray-500 uppercase font-bold">Siswa Konsul</p>
+                        <h3 id="statKonsul" class="text-xl font-bold text-gray-800">0</h3>
+                    </div>
+                </div>
+                
                 <div class="flex gap-2 mb-2 bg-gray-200 p-1 rounded-lg">
                     <button onclick="guruSwitchMode('Laporan')" id="btnModeLaporan" class="flex-1 text-center py-2 rounded-md text-xs font-bold transition">Laporan Masuk</button>
                     <button onclick="guruSwitchMode('Chat')" id="btnModeChat" class="flex-1 text-center py-2 rounded-md text-xs font-bold transition">Chat Konsultasi</button>
                 </div>
-                <div id="guruLaporanArea"><button onclick="loadGuruData()" class="text-blue-600 text-xs mb-3 w-full text-center py-2 border border-blue-200 rounded-lg bg-blue-50"><i class="fas fa-sync animate-spin-slow"></i> Segarkan Data</button><div id="guruList" class="space-y-4"></div></div>
+
+                <div id="guruLaporanArea">
+                     <button onclick="loadGuruData()" class="text-blue-600 text-xs mb-3 w-full text-center py-2 border border-blue-200 rounded-lg bg-blue-50 hover:bg-blue-100 transition"><i class="fas fa-sync"></i> Segarkan Data</button>
+                    <div id="guruList" class="space-y-4 pb-10"></div>
+                </div>
+
                 <div id="guruChatArea" class="hidden">
-                    <h3 class="text-xs font-bold mb-2 text-gray-500 uppercase">Pilih Siswa untuk Chat:</h3><div id="guruChatUserList" class="flex gap-2 overflow-x-auto mb-4 pb-2 no-scrollbar"></div>
-                    <div id="guruChatBoxContainer" class="hidden bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"><div class="bg-gray-100 p-2 text-xs font-bold text-center border-b" id="chatStudentNameHeader">Chat Room</div><div id="guruChatBox" class="h-64 overflow-y-auto p-3 text-sm space-y-2 bg-gray-50"></div><div class="flex gap-2 p-2 border-t bg-white"><input type="text" id="guruChatInput" class="flex-1 border bg-gray-50 p-2 rounded-lg text-xs" placeholder="Balas siswa..."><button onclick="sendChatGuru()" class="bg-green-600 text-white px-3 rounded-lg shadow"><i class="fas fa-paper-plane"></i></button></div></div>
+                    <h3 class="text-xs font-bold mb-2 text-gray-500 uppercase">Pilih Siswa:</h3>
+                    <div id="guruChatUserList" class="flex gap-2 overflow-x-auto mb-4 pb-2 no-scrollbar"></div>
+                    <div id="guruChatBoxContainer" class="hidden bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                        <div class="bg-gray-100 p-2 text-xs font-bold text-center border-b text-gray-700" id="chatStudentNameHeader">Chat Room</div>
+                        <div id="guruChatBox" class="h-64 overflow-y-auto p-3 text-sm space-y-2 bg-gray-50"></div>
+                        <div class="flex gap-2 p-2 border-t bg-white">
+                            <input type="text" id="guruChatInput" class="flex-1 border bg-gray-50 p-2 rounded-lg text-xs outline-none" placeholder="Balas siswa...">
+                            <button onclick="sendChatGuru()" class="bg-blue-600 text-white px-3 rounded-lg shadow hover:bg-blue-700"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </main>
         <footer class="bg-white p-3 text-center border-t text-[9px] text-gray-500 sm:rounded-b-2xl"><p class="font-bold text-blue-900 mb-0.5">LOKER IDE DAN RASA</p><p>Created by <span class="font-semibold text-gray-700">Muhammad Hasratul</span> - Bimbingan dan Konseling</p></footer>
     </div>
@@ -239,6 +246,7 @@
         let currentUser = null;
         let currentTab = 'Beranda';
         let chatInterval = null;
+        let sessionInterval = null;
         let selectedStudentForGuru = null;
 
         window.onload = function() {
@@ -246,6 +254,25 @@
             document.getElementById('headerDate').innerText = new Date().toLocaleDateString('id-ID', options);
         };
 
+        // --- SESSION MANAGEMENT ---
+        function startSessionCheck() {
+            if (sessionInterval) clearInterval(sessionInterval);
+            sessionInterval = setInterval(async () => {
+                if (!currentUser || !currentUser.token) return;
+                try {
+                    const res = await fetch(API_URL, { method: 'POST', body: new URLSearchParams({ 
+                        action: 'checkSession', username: currentUser.username, token: currentUser.token 
+                    })});
+                    const data = await res.json();
+                    if (data.status === 'expired') {
+                        clearInterval(sessionInterval);
+                        document.getElementById('modalSession').classList.remove('hidden');
+                    }
+                } catch(e) { console.log("Session check failed, ignoring..."); }
+            }, 10000); // Cek setiap 10 detik
+        }
+
+        // --- UI & NAV ---
         function switchView(viewId) {
             ['view-login', 'view-signup', 'view-dashboard-siswa', 'view-dashboard-guru'].forEach(id => document.getElementById(id).classList.add('hidden'));
             document.getElementById(viewId).classList.remove('hidden');
@@ -259,19 +286,13 @@
                 if(btn) btn.className = "flex-1 min-w-[60px] py-2.5 text-[10px] font-bold rounded-lg flex flex-col items-center transition " + 
                     (t === tab ? "bg-blue-50 text-blue-600 shadow-inner" : "text-gray-400 hover:bg-gray-50");
             });
-
             ['content-beranda', 'content-form', 'content-chat', 'content-history'].forEach(id => document.getElementById(id).classList.add('hidden'));
             clearInterval(chatInterval);
 
-            if (tab === 'Beranda') {
-                document.getElementById('content-beranda').classList.remove('hidden');
-            } else if (tab === 'Chat') {
-                document.getElementById('content-chat').classList.remove('hidden');
-                loadChat(); chatInterval = setInterval(loadChat, 5000);
-            } else if (tab === 'History') {
-                document.getElementById('content-history').classList.remove('hidden');
-                loadStudentHistory();
-            } else {
+            if (tab === 'Beranda') document.getElementById('content-beranda').classList.remove('hidden');
+            else if (tab === 'Chat') { document.getElementById('content-chat').classList.remove('hidden'); loadChat(); chatInterval = setInterval(loadChat, 5000); }
+            else if (tab === 'History') { document.getElementById('content-history').classList.remove('hidden'); loadStudentHistory(); }
+            else {
                 document.getElementById('content-form').classList.remove('hidden');
                 const banner = document.getElementById('bannerInfo');
                 const title = document.getElementById('inputJudul');
@@ -287,144 +308,101 @@
             }
         }
 
-        function showModalSuccess(type) {
-            const modal = document.getElementById('modalSuccess');
-            const title = document.getElementById('modalTitle');
-            const desc = document.getElementById('modalDesc');
-            if (type === 'Ide') { title.innerText = "Ide Hebat Diterima!"; desc.innerText = "Terima kasih, nak! Kontribusimu sangat berarti untuk kemajuan sekolah kita."; } 
-            else { title.innerText = "Terima Kasih Sudah Percaya"; desc.innerText = "Kamu anak pemberani. Ceritamu aman bersama kami dan akan segera kami tindak lanjuti."; }
-            modal.classList.remove('hidden');
-        }
-
-        function closeModal() { document.getElementById('modalSuccess').classList.add('hidden'); }
-        function closeWelcomeModal() { document.getElementById('modalWelcome').classList.add('hidden'); switchView('view-dashboard-siswa'); setTab('Beranda'); }
-        function showToast(msg) { const t = document.getElementById('toast'); document.getElementById('toastMsg').innerText = msg; t.classList.remove('hidden'); setTimeout(() => t.classList.add('hidden'), 3000); }
-
+        // --- AUTH ---
         async function handleLogin(e) {
             e.preventDefault();
             const btn = document.getElementById('btnLogin'); const originalText = btn.innerHTML;
             btn.innerHTML = '<div class="loader border-white border-t-transparent"></div>'; btn.disabled = true;
-            const body = new URLSearchParams({ action: 'login', username: document.getElementById('loginUser').value, password: document.getElementById('loginPass').value });
             try {
-                const res = await fetch(API_URL, { method: 'POST', body: body }); const data = await res.json();
+                const res = await fetch(API_URL, { method: 'POST', body: new URLSearchParams({ action: 'login', username: document.getElementById('loginUser').value, password: document.getElementById('loginPass').value }) });
+                const data = await res.json();
                 if (data.status === 'success') {
-                    currentUser = data;
+                    currentUser = data; // Token tersimpan di sini
                     if (data.role === 'GuruBK') { 
-                        switchView('view-dashboard-guru'); loadGuruData(); loadGuruChatList(); 
+                        switchView('view-dashboard-guru'); 
+                        document.getElementById('guruNameDisplay').innerText = data.nama;
+                        loadGuruData(); loadGuruChatList(); loadGuruStats(); // NEW: Load Stats
                     } else { 
                         document.getElementById('displayNama').innerText = data.nama; 
-                        
-                        // UPDATE GREETING (Pagi/Siang/Sore/Malam)
                         const hour = new Date().getHours();
-                        let greet = hour < 11 ? "Selamat Pagi," : hour < 15 ? "Selamat Siang," : hour < 18 ? "Selamat Sore," : "Selamat Malam,";
-                        document.getElementById('greetingText').innerText = greet;
-
-                        // UPDATE ICON GENDER
+                        document.getElementById('greetingText').innerText = hour < 11 ? "Selamat Pagi," : hour < 15 ? "Selamat Siang," : hour < 18 ? "Selamat Sore," : "Selamat Malam,";
                         const iconCont = document.getElementById('userIconContainer');
-                        if (data.gender === 'L') {
-                            iconCont.innerHTML = '<i class="fas fa-male text-2xl"></i>';
-                            iconCont.className = "w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600";
-                        } else {
-                            iconCont.innerHTML = '<i class="fas fa-female text-2xl"></i>';
-                            iconCont.className = "w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-500";
-                        }
-
-                        document.getElementById('modalWelcome').classList.remove('hidden'); 
+                        if (data.gender === 'L') { iconCont.innerHTML = '<i class="fas fa-male text-2xl"></i>'; iconCont.className = "w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600"; } 
+                        else { iconCont.innerHTML = '<i class="fas fa-female text-2xl"></i>'; iconCont.className = "w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-500"; }
+                        document.getElementById('modalWelcome').classList.remove('hidden');
+                        startSessionCheck(); // MULAI CEK SESI
                     }
-                } else { showToast(data.message || "Login Gagal. Cek Username/Password."); }
-            } catch (err) { showToast("Gagal koneksi server."); }
+                } else { showToast(data.message || "Login Gagal."); }
+            } catch (err) { showToast("Gagal koneksi."); }
             btn.innerHTML = originalText; btn.disabled = false;
         }
 
-        // LOGOUT LOGIC
+        function performLogout() { 
+            currentUser = null; clearInterval(chatInterval); clearInterval(sessionInterval); 
+            document.getElementById('modalLogout').classList.add('hidden'); 
+            document.getElementById('modalSession').classList.add('hidden');
+            switchView('view-login'); 
+        }
         function confirmLogout() { document.getElementById('modalLogout').classList.remove('hidden'); }
         function closeLogoutModal() { document.getElementById('modalLogout').classList.add('hidden'); }
-        function performLogout() { currentUser = null; clearInterval(chatInterval); closeLogoutModal(); switchView('view-login'); }
-        function handleLogout() { performLogout(); }
+        function closeWelcomeModal() { document.getElementById('modalWelcome').classList.add('hidden'); switchView('view-dashboard-siswa'); setTab('Beranda'); }
+        function closeModal() { document.getElementById('modalSuccess').classList.add('hidden'); }
+        function showToast(msg) { const t = document.getElementById('toast'); document.getElementById('toastMsg').innerText = msg; t.classList.remove('hidden'); setTimeout(() => t.classList.add('hidden'), 3000); }
+        function showModalSuccess(type) {
+            const modal = document.getElementById('modalSuccess'); document.getElementById('modalTitle').innerText = type === 'Ide' ? "Ide Hebat Diterima!" : "Terima Kasih Sudah Percaya";
+            document.getElementById('modalDesc').innerText = type === 'Ide' ? "Terima kasih, nak! Kontribusimu sangat berarti." : "Kamu anak pemberani. Ceritamu aman bersama kami.";
+            modal.classList.remove('hidden');
+        }
 
+        // --- GURU STATS ---
+        async function loadGuruStats() {
+            try {
+                const res = await fetch(API_URL, { method: 'POST', body: new URLSearchParams({ action: 'getGuruStats' }) });
+                const data = await res.json();
+                if(data.status === 'success') {
+                    document.getElementById('statIde').innerText = data.stats.ide;
+                    document.getElementById('statRasa').innerText = data.stats.rasa;
+                    document.getElementById('statKonsul').innerText = data.stats.konsul;
+                }
+            } catch(e) {}
+        }
+
+        // --- DELETE HISTORY (SISWA) ---
+        async function deleteHistory(id, type) {
+            if(!confirm("Yakin ingin menghapus riwayat ini? Data akan hilang permanen.")) return;
+            try {
+                await fetch(API_URL, { method: 'POST', body: new URLSearchParams({ action: 'deleteHistory', id: id, type: type }) });
+                showToast("Riwayat dihapus.");
+                loadStudentHistory(); // Refresh
+            } catch(e) { showToast("Gagal menghapus."); }
+        }
+
+        // --- CORE FUNCTIONS (Chat, Submit, Load Data) ---
         async function sendChat() {
             const input = document.getElementById('chatInput'); const msg = input.value; if(!msg) return;
             input.value = ''; appendChatBubble(msg, 'Siswa', true); 
             await fetch(API_URL, { method: 'POST', body: new URLSearchParams({ action: 'sendChat', namaSiswa: currentUser.nama, pengirim: 'Siswa', pesan: msg }) });
         }
-
         async function loadChat() {
             const res = await fetch(API_URL, { method: 'POST', body: new URLSearchParams({ action: 'getChat', namaSiswa: currentUser.nama }) });
             const data = await res.json(); const box = document.getElementById('chatBox'); box.innerHTML = '';
             if(data.data.length === 0) { box.innerHTML = '<div class="text-center mt-10"><i class="fas fa-comments text-4xl text-gray-200 mb-2"></i><p class="text-xs text-gray-400">Belum ada percakapan.</p></div>'; return; }
             data.data.forEach(chat => { appendChatBubble(chat.pesan, chat.pengirim, chat.pengirim === 'Siswa'); }); box.scrollTop = box.scrollHeight;
         }
-
         function appendChatBubble(msg, sender, isMe) {
             const box = document.getElementById('chatBox'); const bubble = document.createElement('div');
             bubble.className = `chat-bubble ${isMe ? 'chat-student' : 'chat-guru'} animate-fade-in`;
-            bubble.innerHTML = `<p>${msg}</p><span class="text-[9px] opacity-70 block text-right mt-1">${sender}</span>`;
-            box.appendChild(bubble); box.scrollTop = box.scrollHeight;
+            bubble.innerHTML = `<p>${msg}</p><span class="text-[9px] opacity-70 block text-right mt-1">${sender}</span>`; box.appendChild(bubble); box.scrollTop = box.scrollHeight;
         }
-
-        async function loadGuruChatList() {
-             const res = await fetch(API_URL, { method: 'POST', body: new URLSearchParams({action: 'getGuruChatList'}) });
-             const data = await res.json(); const list = document.getElementById('guruChatUserList'); list.innerHTML = '';
-             data.data.forEach(name => { list.innerHTML += `<button onclick="openGuruChat('${name}')" class="bg-white border border-blue-200 text-blue-800 px-3 py-2 rounded-lg text-xs whitespace-nowrap shadow-sm hover:bg-blue-50 transition min-w-[80px]"><i class="fas fa-user-circle mb-1 block text-lg"></i>${name}</button>`; });
-        }
-
-        function openGuruChat(studentName) {
-            selectedStudentForGuru = studentName; document.getElementById('guruChatBoxContainer').classList.remove('hidden');
-            document.getElementById('chatStudentNameHeader').innerText = "Chat dengan: " + studentName; loadGuruChatRoom();
-        }
-
-        async function loadGuruChatRoom() {
-            if(!selectedStudentForGuru) return;
-            const res = await fetch(API_URL, { method: 'POST', body: new URLSearchParams({ action: 'getChat', namaSiswa: selectedStudentForGuru }) });
-            const data = await res.json(); const box = document.getElementById('guruChatBox'); box.innerHTML = '';
-            data.data.forEach(chat => {
-                const isMe = chat.pengirim !== 'Siswa'; 
-                const bubble = document.createElement('div'); bubble.className = `chat-bubble ${isMe ? 'bg-blue-600 text-white self-end ml-auto' : 'bg-white border text-gray-800 mr-auto'}`;
-                bubble.style.maxWidth = "80%"; bubble.style.width = "fit-content"; bubble.style.borderRadius = "12px"; bubble.style.padding = "8px 12px"; bubble.style.marginBottom = "8px";
-                bubble.innerHTML = `<p>${chat.pesan}</p>`; box.appendChild(bubble);
-            }); box.scrollTop = box.scrollHeight;
-        }
-
-        async function sendChatGuru() {
-            const input = document.getElementById('guruChatInput'); const msg = input.value; if(!msg || !selectedStudentForGuru) return;
-            input.value = ''; await fetch(API_URL, { method: 'POST', body: new URLSearchParams({ action: 'sendChat', namaSiswa: selectedStudentForGuru, pengirim: 'Guru BK', pesan: msg }) });
-            loadGuruChatRoom();
-        }
-
-        function guruSwitchMode(mode) {
-            document.getElementById('guruLaporanArea').classList.toggle('hidden', mode !== 'Laporan'); document.getElementById('guruChatArea').classList.toggle('hidden', mode !== 'Chat');
-            const activeClass = "bg-blue-600 text-white shadow-md"; const inactiveClass = "text-gray-500 hover:bg-white hover:shadow-sm";
-            document.getElementById('btnModeLaporan').className = "flex-1 text-center py-2 rounded-md text-xs font-bold transition " + (mode === 'Laporan' ? activeClass : inactiveClass);
-            document.getElementById('btnModeChat').className = "flex-1 text-center py-2 rounded-md text-xs font-bold transition " + (mode === 'Chat' ? activeClass : inactiveClass);
-        }
-
         async function submitLaporan() {
             const btn = document.getElementById('btnSubmit'); const judul = document.getElementById('inputJudul').value; const isi = document.getElementById('inputIsi').value;
             if(!judul || !isi) return showToast("Mohon lengkapi isian!");
-            const originalText = btn.innerHTML; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...'; btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...'; btn.disabled = true;
             try {
                 await fetch(API_URL, { method: 'POST', body: new URLSearchParams({ action: 'submitLaporan', kategori: currentTab, nama: currentUser.nama, kelas: currentUser.kelas, judul_jenis: judul, isi: isi, anonim: document.getElementById('inputAnonim').checked }) });
                 document.getElementById('inputJudul').value = ''; document.getElementById('inputIsi').value = ''; showModalSuccess(currentTab);
             } catch(err) { showToast("Gagal mengirim"); }
-            btn.innerHTML = originalText; btn.disabled = false;
-        }
-
-        async function loadGuruData() {
-             const list = document.getElementById('guruList'); list.innerHTML = '<div class="loader mx-auto"></div>';
-             const res = await fetch(API_URL, { method: 'POST', body: new URLSearchParams({action:'getGuruData'}) });
-             const data = await res.json(); list.innerHTML = '';
-             if(data.rasa.length===0) list.innerHTML='<p class="text-center text-xs text-gray-400 mt-4">Tidak ada laporan masuk.</p>';
-             data.rasa.forEach(item => { list.innerHTML += `<div class="bg-white p-3 rounded-lg shadow-sm border-l-4 border-blue-500 mb-3"><div class="flex justify-between"><p class="text-xs font-bold text-gray-700">${item.Nama} (${item.Kelas})</p><span class="text-[10px] text-gray-400">${item.Tanggal}</span></div><p class="text-xs bg-gray-100 p-2 rounded mt-1 mb-2 italic text-gray-600">"${item.Pesan}"</p><div class="flex gap-2"><input id="rep-${item.ID}" class="border bg-gray-50 text-xs p-2 rounded flex-1" placeholder="Tulis balasan..."><button onclick="guruReply('${item.ID}')" class="bg-green-600 text-white px-3 py-1 rounded-lg text-xs font-bold hover:bg-green-700">Kirim</button></div></div>`; });
-        }
-        async function guruReply(id) {
-            const val = document.getElementById(`rep-${id}`).value; if(!val) return;
-            await fetch(API_URL, { method: 'POST', body: new URLSearchParams({action:'replyLaporan', id:id, status:'Diproses', balasan:val}) });
-            loadGuruData(); showToast("Balasan terkirim!");
-        }
-        async function handleSignup(e) {
-            e.preventDefault(); const btn = document.getElementById('btnSignup'); btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...'; btn.disabled = true;
-            await fetch(API_URL, { method: 'POST', body: new URLSearchParams({ action: 'signup', username: document.getElementById('regUser').value, password: document.getElementById('regPass').value, nama: document.getElementById('regNama').value, gender: document.getElementById('regGender').value, kelas: document.getElementById('regKelas').value }) });
-            alert("Akun Berhasil Dibuat! Silakan Login."); switchView('view-login'); btn.innerHTML = 'BUAT AKUN SISWA'; btn.disabled = false;
+            btn.innerHTML = 'KIRIM SEKARANG <i class="fas fa-paper-plane ml-1"></i>'; btn.disabled = false;
         }
         async function loadStudentHistory() {
             const list = document.getElementById('historyList'); list.innerHTML = '<div class="loader mx-auto"></div>';
@@ -432,10 +410,45 @@
             const data = await res.json(); list.innerHTML = '';
             if(data.data.length===0) list.innerHTML='<div class="text-center mt-10"><i class="fas fa-history text-4xl text-gray-200 mb-2"></i><p class="text-xs text-gray-400">Belum ada riwayat laporan.</p></div>';
             data.data.forEach(item => {
-                const statusColor = item.Status === 'Menunggu' ? 'bg-gray-100 text-gray-500' : 'bg-green-100 text-green-700';
-                list.innerHTML += `<div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-3"><div class="flex justify-between mb-2"><span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">${item.Jenis}</span><span class="text-[10px] text-gray-400">${item.Tanggal}</span></div><p class="text-sm text-gray-700 mb-3">"${item.Pesan}"</p><div class="pt-2 border-t flex justify-between items-center"><span class="text-[10px] px-2 py-1 rounded font-bold ${statusColor}">${item.Status}</span></div>${item.Balasan && item.Balasan !== '-' ? `<div class="mt-2 bg-blue-50 p-2 rounded text-xs text-blue-800 border border-blue-100"><i class="fas fa-reply mr-1"></i> <b>Guru BK:</b> ${item.Balasan}</div>` : ''}</div>`;
+                const statusColor = item.Status === 'Menunggu' ? 'bg-gray-100 text-gray-500' : (item.Status === 'Diproses' ? 'bg-yellow-100 text-yellow-700' : 'bg-green-100 text-green-700');
+                // Tambahkan tombol HAPUS
+                list.innerHTML += `<div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-3 relative">
+                    <button onclick="deleteHistory('${item.ID}', '${item.Tipe}')" class="absolute top-3 right-3 text-red-300 hover:text-red-500"><i class="fas fa-trash-alt"></i></button>
+                    <div class="flex justify-between mb-2 mr-6"><span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">${item.Jenis || item.Judul}</span></div>
+                    <p class="text-sm text-gray-700 mb-3 pr-2">"${item.Pesan || item.Deskripsi}"</p>
+                    <div class="pt-2 border-t flex justify-between items-center"><span class="text-[10px] px-2 py-1 rounded font-bold uppercase ${statusColor}">${item.Status}</span> <span class="text-[10px] text-gray-400">${item.Tanggal}</span></div>
+                    ${item.Balasan && item.Balasan !== '-' ? `<div class="mt-2 bg-blue-50 p-2 rounded text-xs text-blue-800 border border-blue-100"><i class="fas fa-reply mr-1"></i> <b>Guru BK:</b> ${item.Balasan}</div>` : ''}
+                </div>`;
             });
         }
+        
+        // GURU LOADERS
+        async function loadGuruData() {
+             const list = document.getElementById('guruList'); list.innerHTML = '<div class="loader mx-auto"></div>';
+             const res = await fetch(API_URL, { method: 'POST', body: new URLSearchParams({action:'getGuruData'}) });
+             const data = await res.json(); list.innerHTML = '';
+             const combined = [...data.rasa, ...data.ide];
+             if(combined.length===0) list.innerHTML='<p class="text-center text-xs text-gray-400 mt-4">Tidak ada laporan masuk.</p>';
+             combined.forEach(item => {
+                 const isIde = item.Kategori === 'Ide';
+                 const borderColor = isIde ? 'border-yellow-400' : 'border-pink-400';
+                 const badgeColor = isIde ? 'bg-yellow-100 text-yellow-700' : 'bg-pink-100 text-pink-700';
+                 const icon = isIde ? '<i class="fas fa-lightbulb"></i> Ide' : '<i class="fas fa-heart"></i> Rasa';
+                 const statusOptions = ['Menunggu', 'Diproses', 'Selesai', 'Ditolak'].map(s => `<option value="${s}" ${item.Status === s ? 'selected' : ''}>${s}</option>`).join('');
+                 list.innerHTML += `<div class="bg-white p-4 rounded-xl shadow-sm border-l-4 ${borderColor} mb-4 relative overflow-hidden"><div class="flex justify-between items-start mb-2"><div><span class="text-[10px] font-bold uppercase tracking-wider ${badgeColor} px-2 py-0.5 rounded-full mb-1 inline-block">${icon}</span><p class="text-xs font-bold text-gray-700 mt-1">${item.Nama} <span class="font-normal text-gray-500">(${item.Kelas})</span></p></div><span class="text-[10px] text-gray-400 bg-gray-50 px-2 py-1 rounded">${item.Tanggal}</span></div><p class="text-xs font-bold text-gray-800 mb-1">${item.Judul || item.Jenis}</p><p class="text-xs bg-gray-50 p-3 rounded-lg text-gray-600 mb-3 italic leading-relaxed">"${item.Deskripsi || item.Pesan}"</p><div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100"><label class="text-[10px] text-gray-500 font-bold uppercase mb-1 block">Tindak Lanjut:</label><div class="flex gap-2 mb-2"><select id="status-${item.ID}" class="text-xs border border-gray-300 rounded-lg p-2 bg-white text-gray-700 focus:border-blue-500 outline-none">${statusOptions}</select></div><div class="flex gap-2"><input id="rep-${item.ID}" class="border border-gray-300 bg-white text-xs p-2 rounded-lg flex-1 outline-none focus:border-blue-500" placeholder="Tulis balasan guru..." value="${item.Balasan && item.Balasan !== '-' ? item.Balasan : ''}"><button onclick="guruReply('${item.ID}', '${item.Kategori}')" class="bg-blue-600 text-white px-4 py-1 rounded-lg text-xs font-bold hover:bg-blue-700 shadow-sm transition">Update</button></div></div></div>`;
+             });
+        }
+        async function guruReply(id, kategori) {
+            const val = document.getElementById(`rep-${id}`).value; const stat = document.getElementById(`status-${id}`).value; if(!val) return showToast("Mohon isi balasan dulu.");
+            await fetch(API_URL, { method: 'POST', body: new URLSearchParams({ action: 'replyLaporan', id: id, status: stat, balasan: val, kategori: kategori }) });
+            loadGuruData(); loadGuruStats(); showToast("Status & Balasan berhasil disimpan!");
+        }
+        async function loadGuruChatList() { const res = await fetch(API_URL, { method: 'POST', body: new URLSearchParams({action: 'getGuruChatList'}) }); const data = await res.json(); const list = document.getElementById('guruChatUserList'); list.innerHTML = ''; data.data.forEach(name => { list.innerHTML += `<button onclick="openGuruChat('${name}')" class="bg-white border border-blue-200 text-blue-800 px-3 py-2 rounded-lg text-xs whitespace-nowrap shadow-sm hover:bg-blue-50 transition min-w-[80px]"><i class="fas fa-user-circle mb-1 block text-lg"></i>${name}</button>`; }); }
+        function openGuruChat(studentName) { selectedStudentForGuru = studentName; document.getElementById('guruChatBoxContainer').classList.remove('hidden'); document.getElementById('chatStudentNameHeader').innerText = "Chat dengan: " + studentName; loadGuruChatRoom(); }
+        async function loadGuruChatRoom() { if(!selectedStudentForGuru) return; const res = await fetch(API_URL, { method: 'POST', body: new URLSearchParams({ action: 'getChat', namaSiswa: selectedStudentForGuru }) }); const data = await res.json(); const box = document.getElementById('guruChatBox'); box.innerHTML = ''; data.data.forEach(chat => { const isMe = chat.pengirim !== 'Siswa'; const bubble = document.createElement('div'); bubble.className = `chat-bubble ${isMe ? 'bg-blue-600 text-white self-end ml-auto' : 'bg-white border text-gray-800 mr-auto'}`; bubble.style.maxWidth = "80%"; bubble.style.width = "fit-content"; bubble.style.borderRadius = "12px"; bubble.style.padding = "8px 12px"; bubble.style.marginBottom = "8px"; bubble.innerHTML = `<p>${chat.pesan}</p>`; box.appendChild(bubble); }); box.scrollTop = box.scrollHeight; }
+        async function sendChatGuru() { const input = document.getElementById('guruChatInput'); const msg = input.value; if(!msg || !selectedStudentForGuru) return; input.value = ''; await fetch(API_URL, { method: 'POST', body: new URLSearchParams({ action: 'sendChat', namaSiswa: selectedStudentForGuru, pengirim: 'Guru BK', pesan: msg }) }); loadGuruChatRoom(); }
+        function guruSwitchMode(mode) { document.getElementById('guruLaporanArea').classList.toggle('hidden', mode !== 'Laporan'); document.getElementById('guruChatArea').classList.toggle('hidden', mode !== 'Chat'); const activeClass = "bg-blue-600 text-white shadow-md"; const inactiveClass = "text-gray-500 hover:bg-white hover:shadow-sm"; document.getElementById('btnModeLaporan').className = "flex-1 text-center py-2 rounded-md text-xs font-bold transition " + (mode === 'Laporan' ? activeClass : inactiveClass); document.getElementById('btnModeChat').className = "flex-1 text-center py-2 rounded-md text-xs font-bold transition " + (mode === 'Chat' ? activeClass : inactiveClass); }
+        async function handleSignup(e) { e.preventDefault(); const btn = document.getElementById('btnSignup'); btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...'; btn.disabled = true; await fetch(API_URL, { method: 'POST', body: new URLSearchParams({ action: 'signup', username: document.getElementById('regUser').value, password: document.getElementById('regPass').value, nama: document.getElementById('regNama').value, gender: document.getElementById('regGender').value, kelas: document.getElementById('regKelas').value }) }); alert("Akun Berhasil Dibuat! Silakan Login."); switchView('view-login'); btn.innerHTML = 'BUAT AKUN SISWA'; btn.disabled = false; }
     </script>
 </body>
 </html>
