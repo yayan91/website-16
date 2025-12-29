@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LOKER IDE DAN RASA - SMPN 16 MAKASSAR</title>
+    <title>LISA-16</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
             <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4 text-red-400 text-3xl shadow-sm border border-red-100">
                 <i class="fas fa-heart"></i>
             </div>
-            <h3 class="text-lg font-bold text-gray-800 mb-2">Sampai Jumpa Nak!</h3>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Sampai Jumpa!</h3>
             <p class="text-gray-600 text-sm mb-6 leading-relaxed">Terima kasih sudah berkunjung hari ini. Ingatlah bahwa kamu tidak sendirian. Jaga dirimu baik-baik ya, kami selalu ada untukmu.</p>
             <div class="flex gap-3">
                 <button onclick="closeLogoutModal()" class="flex-1 py-3 rounded-xl border border-gray-200 text-gray-600 font-bold text-sm hover:bg-gray-50">Batal</button>
@@ -49,8 +49,8 @@
             <div class="w-16 h-16 bg-yellow-50 rounded-full flex items-center justify-center mx-auto mb-4 text-yellow-500 text-3xl">
                 <i class="fas fa-exclamation-triangle"></i>
             </div>
-            <h3 class="text-lg font-bold text-gray-800 mb-2">Yah Sesi Berakhir</h3>
-            <p class="text-gray-600 text-sm mb-6 leading-relaxed">Akun ini telah login di perangkat lain. Untuk keamanan, sesi ini dihentikan.</p>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Yah Sesi Kamu Berakhir</h3>
+            <p class="text-gray-600 text-sm mb-6 leading-relaxed">Akun kamu telah login di perangkat lain. Untuk keamanan, sesi ini dihentikan yah.</p>
             <button onclick="performLogout()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl">Login Kembali</button>
         </div>
     </div>
@@ -72,7 +72,7 @@
     <div id="modalSuccess" class="hidden fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl modal-enter relative overflow-hidden">
             <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-500 text-3xl animate-bounce"><i class="fas fa-hand-holding-heart"></i></div>
-            <h3 id="modalTitle" class="text-xl font-bold text-gray-800 mb-2">Terima Kasih, Nak!</h3>
+            <h3 id="modalTitle" class="text-xl font-bold text-gray-800 mb-2">Terima Kasih, Nak</h3>
             <p id="modalDesc" class="text-gray-600 text-sm mb-6 leading-relaxed">Suaramu sangat berharga.</p>
             <button onclick="closeModal()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition">Sama-sama, Bapak Ibu Guru</button>
         </div>
@@ -452,3 +452,4 @@
     </script>
 </body>
 </html>
+
