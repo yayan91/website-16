@@ -12,42 +12,28 @@
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 
     <style>
-        /* --- CONFIGURATION & ANIMATIONS --- */
         :root { --primary: #1e3a8a; --accent: #f59e0b; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F8FAFC; scroll-behavior: smooth; overflow-x: hidden; }
-        
-        /* Font Khusus Doa */
         .font-doa { font-family: 'Playfair Display', serif; }
-
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
-        /* Glass Effect Pro */
         .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.6); }
         .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05); }
-
-        /* Navigation Active State */
         .nav-active { color: #fff !important; background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
-
-        /* Page Transition */
         .page-content { display: none; opacity: 0; transform: translateY(15px); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .page-active { display: block; opacity: 1; transform: translateY(0); }
-
-        /* Running Text Animation */
         .scrolling-container { overflow: hidden; white-space: nowrap; }
         .scrolling-text { display: inline-block; padding-left: 100%; animation: scroll-left 25s linear infinite; }
         @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-
-        /* Pulse Animation for Logo */
         .pulse-soft { animation: pulse 3s infinite; }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); } 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); } }
-
-        /* Welcome Modal Entrance */
         .modal-enter { animation: modalPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
         @keyframes modalPop { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        @keyframes swing { 0%, 100% { transform: rotate(0deg); } 20% { transform: rotate(15deg); } 40% { transform: rotate(-10deg); } 60% { transform: rotate(5deg); } 80% { transform: rotate(-5deg); } }
+        .group-hover\:animate-swing:hover { animation: swing 1s ease; }
     </style>
 </head>
 <body class="text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900">
@@ -67,10 +53,7 @@
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-3 w-full md:w-auto justify-between cursor-pointer group" onclick="nav('beranda')">
                 <div class="flex items-center gap-3">
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-blue-500/20 rounded-full blur-md group-hover:bg-blue-500/40 transition"></div>
-                        <img src="https://drive.google.com/thumbnail?id=1Z6g-sCdw-k7W8dnw12NeagPkroLlmk-L&sz=w200" class="w-12 h-12 object-contain relative z-10 filter drop-shadow-sm" alt="Logo SMPN 16">
-                    </div>
+                    <img src="https://drive.google.com/thumbnail?id=1Z6g-sCdw-k7W8dnw12NeagPkroLlmk-L&sz=w200" class="w-12 h-12 object-contain filter drop-shadow-sm" alt="Logo SMPN 16">
                     <div>
                         <h1 class="font-extrabold text-blue-900 text-sm leading-none tracking-tight">RUANG DIGITAL</h1>
                         <p class="text-[10px] font-bold text-amber-600 uppercase tracking-widest">SMPN 16 Makassar</p>
@@ -95,7 +78,7 @@
                     <button onclick="nav('fasilitas')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Fasilitas</button>
                     <button onclick="nav('galeri')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Galeri</button>
                     <button onclick="nav('alumni')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Alumni</button>
-                    <button onclick="nav('layanan')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Digitalisasi</button>
+                    <button onclick="nav('layanan')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Layanan Digital</button>
                     <button onclick="nav('testimoni')" class="nav-btn px-4 py-2 text-xs md:text-sm font-bold text-slate-500 hover:text-blue-900 transition rounded-full">Testimoni</button>
                 </div>
             </div>
@@ -105,7 +88,6 @@
                     <i class="ph-fill ph-bell-ringing text-xl group-hover:animate-swing"></i>
                     <span class="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full animate-pulse border-2 border-white"></span>
                 </button>
-
                 <a href="https://instagram.com/smpn16_makassar" target="_blank" class="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-xs font-bold hover:shadow-lg hover:shadow-pink-500/30 transition transform hover:-translate-y-0.5">
                     <i class="ph-bold ph-instagram-logo text-lg"></i> Follow
                 </a>
@@ -140,11 +122,9 @@
                     </div>
                 </div>
             </div>
-            
             <div class="pt-12 pb-8 px-8 text-center">
                 <h3 class="text-xl font-bold text-slate-900 uppercase tracking-wide mb-1">Ahlan Wa Sahlan</h3>
                 <p class="text-sm text-slate-500 font-medium mb-6">Selamat Datang di Portal Digital Kami</p>
-                
                 <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100 relative">
                     <i class="ph-fill ph-quotes text-blue-200 text-4xl absolute -top-3 -left-2"></i>
                     <p class="font-doa text-lg text-slate-700 italic leading-relaxed">
@@ -154,10 +134,7 @@
                         <span class="w-10 h-1 bg-amber-400 rounded-full"></span>
                     </div>
                 </div>
-
-                <button onclick="closeWelcome()" class="mt-8 bg-blue-900 text-white px-10 py-3 rounded-xl font-bold shadow-xl shadow-blue-900/20 hover:scale-105 hover:bg-blue-800 transition w-full">
-                    Masuk ke Website
-                </button>
+                <button onclick="closeWelcome()" class="mt-8 bg-blue-900 text-white px-10 py-3 rounded-xl font-bold shadow-xl shadow-blue-900/20 hover:scale-105 hover:bg-blue-800 transition w-full">Masuk ke Website</button>
             </div>
         </div>
     </div>
@@ -168,9 +145,7 @@
                 <div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
                 <div class="flex justify-between items-center relative z-10">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center text-xl shadow-inner">
-                            <i class="ph-fill ph-megaphone"></i>
-                        </div>
+                        <div class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center text-xl shadow-inner"><i class="ph-fill ph-megaphone"></i></div>
                         <div>
                             <h3 class="font-extrabold text-lg leading-tight">Papan Pengumuman</h3>
                             <p class="text-[10px] font-bold text-orange-100 uppercase tracking-widest">Informasi Akademik</p>
@@ -179,14 +154,10 @@
                     <button onclick="closeAnnouncement()" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition"><i class="ph-bold ph-x"></i></button>
                 </div>
             </div>
-            
             <div id="list-pengumuman" class="p-4 overflow-y-auto space-y-3 bg-slate-50 flex-1">
                 <div class="py-10 text-center text-slate-400 italic text-sm">Memuat data...</div>
             </div>
-
-            <div class="p-4 bg-white border-t border-slate-100 text-center text-[10px] text-slate-400 font-bold uppercase tracking-widest shrink-0">
-                Update Berkala
-            </div>
+            <div class="p-4 bg-white border-t border-slate-100 text-center text-[10px] text-slate-400 font-bold uppercase tracking-widest shrink-0">Update Berkala</div>
         </div>
     </div>
 
@@ -213,24 +184,10 @@
                 <p class="text-blue-200 text-xs opacity-80">Suara Anda membangun kemajuan kami</p>
             </div>
             <form id="testiForm" onsubmit="kirimTestimoni(event)" class="p-8 space-y-4">
-                <div>
-                    <label class="text-xs font-bold text-slate-500 uppercase">Nama Lengkap</label>
-                    <input type="text" id="inputNama" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition" placeholder="Nama Anda">
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-slate-500 uppercase">Status</label>
-                    <select id="inputStatus" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm outline-none transition">
-                        <option value="Siswa">Siswa</option><option value="Guru">Guru</option><option value="Orang Tua">Orang Tua</option><option value="Alumni">Alumni</option><option value="Umum">Umum</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-slate-500 uppercase">Pesan</label>
-                    <textarea id="inputIsi" required rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition" placeholder="Tulis pesan..."></textarea>
-                </div>
-                <div class="flex gap-3 pt-2">
-                    <button type="button" onclick="closeForm()" class="flex-1 bg-slate-100 text-slate-600 font-bold py-3 rounded-xl hover:bg-slate-200 transition">Batal</button>
-                    <button type="submit" id="btnKirim" class="flex-1 bg-amber-500 text-blue-900 font-bold py-3 rounded-xl hover:bg-amber-400 transition shadow-lg">Kirim</button>
-                </div>
+                <div><label class="text-xs font-bold text-slate-500 uppercase">Nama Lengkap</label><input type="text" id="inputNama" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition" placeholder="Nama Anda"></div>
+                <div><label class="text-xs font-bold text-slate-500 uppercase">Status</label><select id="inputStatus" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm outline-none transition"><option value="Siswa">Siswa</option><option value="Guru">Guru</option><option value="Orang Tua">Orang Tua</option><option value="Alumni">Alumni</option><option value="Umum">Umum</option></select></div>
+                <div><label class="text-xs font-bold text-slate-500 uppercase">Pesan</label><textarea id="inputIsi" required rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition" placeholder="Tulis pesan..."></textarea></div>
+                <div class="flex gap-3 pt-2"><button type="button" onclick="closeForm()" class="flex-1 bg-slate-100 text-slate-600 font-bold py-3 rounded-xl hover:bg-slate-200 transition">Batal</button><button type="submit" id="btnKirim" class="flex-1 bg-amber-500 text-blue-900 font-bold py-3 rounded-xl hover:bg-amber-400 transition shadow-lg">Kirim</button></div>
             </form>
         </div>
     </div>
@@ -280,7 +237,7 @@
                     <h3 class="text-2xl font-extrabold text-slate-900 flex items-center gap-2">
                         <i class="ph-fill ph-youtube-logo text-red-600 text-3xl"></i> Galeri Video
                     </h3>
-                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Geser &rarr;</span>
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Geser →</span>
                 </div>
                 <div id="video-container" class="flex overflow-x-auto pb-8 gap-6 snap-x snap-mandatory hide-scroll" style="-webkit-overflow-scrolling: touch;">
                     <div class="w-full shrink-0 text-center text-slate-400 text-sm italic py-10 bg-slate-50 rounded-2xl border border-dashed border-slate-300">
@@ -400,7 +357,7 @@
 
     <button onclick="openPPDB()" class="fixed bottom-6 right-6 z-[70] bg-gradient-to-r from-amber-500 to-orange-500 text-white w-16 h-16 rounded-full shadow-2xl shadow-orange-500/40 flex items-center justify-center animate-bounce hover:scale-110 transition cursor-pointer border-4 border-white/30 backdrop-blur-md" title="Info PPDB">
         <i class="ph-bold ph-student text-3xl"></i>
-        <span class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">PPDB!</span>
+        <span class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">Daftar!</span>
     </button>
 
     <footer class="bg-[#0F172A] text-slate-400 pt-24 pb-10 mt-24 rounded-t-[4rem] border-t-4 border-amber-500">
@@ -451,7 +408,7 @@
     </footer>
 
     <script>
-        // --- KONFIGURASI UTAMA ---
+        // --- KEAMANAN TINGKAT TINGGI (BASE64) ---
         const secretKey = "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5a0RZwRGtIdy00MDVXZE12RzhmOUlHbkxOdmZ6UUw5SXpBdjNxblRiV2ZmaFg4UmpLbloRdkF6c3pyVkctZEkwL2V4ZWM=";
         const urlAPI = atob(secretKey); 
         let globalDB = {}; 
@@ -473,7 +430,7 @@
                 const modal = document.getElementById('welcome-modal');
                 modal.classList.remove('hidden');
                 setTimeout(() => modal.classList.remove('opacity-0'), 100);
-            }, 1000); // Muncul setelah 1 detik
+            }, 1000); 
             loadAllData();
         };
         function closeWelcome() {
@@ -538,12 +495,9 @@
                                     <div><p class="text-[10px] font-bold text-red-400 uppercase">Selesai</p><p class="font-bold text-red-900">${info.Jadwal_Selesai}</p></div>
                                 </div>
                             </div>
-                            <a href="${info.Link_Daftar}" target="_blank" class="block w-full text-center bg-amber-500 text-blue-900 font-bold py-4 rounded-xl hover:bg-amber-400 transition shadow-lg shadow-amber-500/30">
-                                Daftar Sekarang
-                            </a>
+                            <a href="${info.Link_Daftar}" target="_blank" class="block w-full text-center bg-amber-500 text-blue-900 font-bold py-4 rounded-xl hover:bg-amber-400 transition shadow-lg shadow-amber-500/30">Daftar Sekarang</a>
                         </div>
-                    </div>
-                `;
+                    </div>`;
                 document.getElementById('konten-ppdb-popup').innerHTML = html;
             }
             ov.classList.remove('hidden');
@@ -560,14 +514,13 @@
         function openAnnouncement() {
             const ov = document.getElementById('announcement-overlay');
             const ct = document.getElementById('announcement-content');
-            
             if(globalDB.pengumuman && globalDB.pengumuman.length > 0) {
                 const html = globalDB.pengumuman.map(p => `
                     <div class="bg-white p-4 rounded-2xl border border-slate-100 hover:border-amber-200 transition shadow-sm hover:shadow-md group">
                         <div class="flex gap-4">
                             <div class="flex flex-col items-center justify-center bg-blue-50 w-14 h-14 rounded-xl shrink-0 text-blue-800">
-                                <span class="text-xs font-bold uppercase"></span>
-                                <span class="text-xl font-extrabold"></span>
+                                <span class="text-xs font-bold uppercase">${p.Tanggal.split(' ')[1] || ''}</span>
+                                <span class="text-xl font-extrabold">${p.Tanggal.split(' ')[0] || ''}</span>
                             </div>
                             <div class="flex-1">
                                 <div class="flex items-center gap-2 mb-1">
@@ -576,21 +529,14 @@
                                 </div>
                                 <h4 class="font-bold text-slate-900 text-sm leading-snug mb-1 group-hover:text-amber-600 transition">${p.Judul}</h4>
                                 <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed">${p.Isi}</p>
-                                
-                                ${p.Link_URL ? `
-                                    <a href="${p.Link_URL}" target="_blank" class="mt-3 inline-flex items-center gap-1 text-[10px] font-bold text-white bg-blue-600 px-3 py-1.5 rounded-lg hover:bg-blue-700 transition">
-                                        Buka Tautan <i class="ph-bold ph-arrow-square-out"></i>
-                                    </a>
-                                ` : ''}
+                                ${p.Link_URL ? `<a href="${p.Link_URL}" target="_blank" class="mt-3 inline-flex items-center gap-1 text-[10px] font-bold text-white bg-blue-600 px-3 py-1.5 rounded-lg hover:bg-blue-700 transition">Buka Tautan <i class="ph-bold ph-arrow-square-out"></i></a>` : ''}
                             </div>
                         </div>
-                    </div>
-                `).join('');
+                    </div>`).join('');
                 document.getElementById('list-pengumuman').innerHTML = html;
             } else {
                 document.getElementById('list-pengumuman').innerHTML = `<div class="h-full flex flex-col items-center justify-center text-slate-400 opacity-60"><i class="ph-duotone ph-bell-slash text-5xl mb-2"></i><p class="text-xs">Tidak ada pengumuman baru.</p></div>`;
             }
-
             ov.classList.remove('hidden');
             setTimeout(() => { ov.classList.remove('opacity-0'); ct.classList.remove('scale-95'); }, 10);
         }
@@ -609,13 +555,8 @@
         function toggleFAQ(id) {
             const content = document.getElementById(id);
             const icon = document.getElementById('icon-' + id);
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                icon.classList.add('rotate-180'); 
-            } else {
-                content.classList.add('hidden');
-                icon.classList.remove('rotate-180'); 
-            }
+            if (content.classList.contains('hidden')) { content.classList.remove('hidden'); icon.classList.add('rotate-180'); } 
+            else { content.classList.add('hidden'); icon.classList.remove('rotate-180'); }
         }
 
         // --- CORE DATA LOADING ---
@@ -643,94 +584,29 @@
                 render(globalDB.guru, 'grid-guru', (i, idx) => `<div onclick="openModal('guru', ${idx})" class="glass-card bg-white p-5 rounded-[2rem] text-center hover:border-blue-300 transition cursor-pointer group"><img src="${getImg(i.Foto_URL)}" class="w-20 h-20 mx-auto mb-3 rounded-full object-cover border-2 border-white shadow-md group-hover:scale-110 transition duration-300"><h4 class="font-bold text-slate-900 text-sm line-clamp-1">${i.Nama}</h4><p class="text-xs text-blue-600 font-bold mt-1 uppercase tracking-wider">${i.Jabatan}</p></div>`);
                 render(globalDB.alumni, 'grid-alumni', (i, idx) => `<div onclick="openModal('alumni', ${idx})" class="glass-card bg-white p-8 rounded-[2.5rem] flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-1 transition duration-300 relative overflow-hidden cursor-pointer"><div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-blue-50 to-transparent"></div><img src="${getImg(i.Foto_URL)}" class="w-20 h-20 rounded-full object-cover mb-4 border-4 border-white shadow-lg relative z-10 group-hover:scale-105 transition"><h4 class="font-extrabold text-lg text-slate-900 relative z-10">${i.Nama}</h4><span class="inline-block bg-blue-900 text-white text-[10px] font-bold px-3 py-1 rounded-full mb-3 mt-1 relative z-10">Angkatan ${i.Angkatan}</span><p class="text-sm font-bold text-amber-600 mb-4 relative z-10 line-clamp-1">${i.Profesi_Kampus}</p></div>`);
                 render(globalDB.testimoni, 'grid-testimoni', (i) => `<div class="break-inside-avoid glass-card bg-white p-6 rounded-[2rem] relative mb-6"><i class="ph-fill ph-chat-centered-text text-blue-100 text-4xl absolute top-6 right-6"></i><p class="text-slate-600 text-sm leading-relaxed mb-6 relative z-10 font-medium">"${i.Isi_Testimoni}"</p><div class="flex items-center gap-3 pt-4 border-t border-slate-50"><img src="${i.Foto_URL}" class="w-10 h-10 rounded-full shadow-sm bg-slate-100"><div><h4 class="font-bold text-slate-900 text-sm">${i.Nama}</h4><p class="text-xs text-blue-500 font-bold uppercase tracking-wider">${i.Status}</p></div></div></div>`);
-                render(globalDB.ekstrakurikuler, 'grid-ekskul', (i) => `
-                    <div class="glass-card bg-white p-6 rounded-[2rem] flex items-center gap-4 hover:border-blue-300 transition group">
-                        <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0 overflow-hidden">
-                            <img src="${getImg(i.Foto_URL)}" onerror="this.src='https://ui-avatars.com/api/?name=${i.Nama_Ekskul}&background=random'" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-lg group-hover:text-blue-600 transition">${i.Nama_Ekskul}</h4>
-                            <div class="flex items-center gap-2 text-xs text-slate-500 mt-1">
-                                <i class="ph-bold ph-clock text-amber-500"></i> ${i.Hari_Latihan}
-                            </div>
-                            <p class="text-xs text-blue-400 mt-1 font-bold uppercase tracking-wide">Pembina: ${i.Pembina}</p>
-                        </div>
-                    </div>
-                `);
+                render(globalDB.ekstrakurikuler, 'grid-ekskul', (i) => `<div class="glass-card bg-white p-6 rounded-[2rem] flex items-center gap-4 hover:border-blue-300 transition group"><div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0 overflow-hidden"><img src="${getImg(i.Foto_URL)}" onerror="this.src='https://ui-avatars.com/api/?name=${i.Nama_Ekskul}&background=random'" class="w-full h-full object-cover"></div><div><h4 class="font-bold text-slate-900 text-lg group-hover:text-blue-600 transition">${i.Nama_Ekskul}</h4><div class="flex items-center gap-2 text-xs text-slate-500 mt-1"><i class="ph-bold ph-clock text-amber-500"></i> ${i.Hari_Latihan}</div><p class="text-xs text-blue-400 mt-1 font-bold uppercase tracking-wide">Pembina: ${i.Pembina}</p></div></div>`);
 
-                // RENDER LAYANAN DIGITAL
                 if (globalDB.layanan && globalDB.layanan.length > 0) {
                     const apps = globalDB.layanan.filter(item => item.Kategori === 'Aplikasi');
                     const docs = globalDB.layanan.filter(item => item.Kategori === 'Dokumen');
-                    render(apps, 'grid-layanan-apps', (i) => `
-                        <a href="${i.Link_URL}" target="_blank" class="glass-card bg-white p-6 rounded-3xl flex flex-col items-center text-center hover:scale-105 hover:shadow-xl transition duration-300 border border-transparent hover:border-blue-200 group">
-                            <div class="w-16 h-16 mb-4 rounded-2xl bg-blue-50 flex items-center justify-center text-3xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition">
-                                <img src="${i.Icon_URL}" onerror="this.style.display='none'" class="w-10 h-10 object-contain">
-                                <i class="ph-fill ph-link" style="${i.Icon_URL ? 'display:none' : ''}"></i>
-                            </div>
-                            <h5 class="font-bold text-slate-900 text-sm mb-1">${i.Nama}</h5>
-                            <p class="text-[10px] text-slate-500 leading-tight">${i.Deskripsi}</p>
-                        </a>
-                    `);
-                    render(docs, 'list-layanan-docs', (i) => `
-                        <div class="p-4 md:p-6 flex items-center justify-between hover:bg-slate-50 transition group">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center text-xl shrink-0">
-                                    <i class="ph-fill ph-file-pdf"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-bold text-slate-900 text-sm group-hover:text-blue-600 transition">${i.Nama}</h5>
-                                    <p class="text-[10px] text-slate-500">${i.Deskripsi}</p>
-                                </div>
-                            </div>
-                            <a href="${i.Link_URL}" target="_blank" class="bg-slate-100 text-slate-600 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-2">
-                                <span class="hidden md:inline">Download</span> <i class="ph-bold ph-download-simple"></i>
-                            </a>
-                        </div>
-                    `);
+                    render(apps, 'grid-layanan-apps', (i) => `<a href="${i.Link_URL}" target="_blank" class="glass-card bg-white p-6 rounded-3xl flex flex-col items-center text-center hover:scale-105 hover:shadow-xl transition duration-300 border border-transparent hover:border-blue-200 group"><div class="w-16 h-16 mb-4 rounded-2xl bg-blue-50 flex items-center justify-center text-3xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition"><img src="${i.Icon_URL}" onerror="this.style.display='none'" class="w-10 h-10 object-contain"><i class="ph-fill ph-link" style="${i.Icon_URL ? 'display:none' : ''}"></i></div><h5 class="font-bold text-slate-900 text-sm mb-1">${i.Nama}</h5><p class="text-[10px] text-slate-500 leading-tight">${i.Deskripsi}</p></a>`);
+                    render(docs, 'list-layanan-docs', (i) => `<div class="p-4 md:p-6 flex items-center justify-between hover:bg-slate-50 transition group"><div class="flex items-center gap-4"><div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center text-xl shrink-0"><i class="ph-fill ph-file-pdf"></i></div><div><h5 class="font-bold text-slate-900 text-sm group-hover:text-blue-600 transition">${i.Nama}</h5><p class="text-[10px] text-slate-500">${i.Deskripsi}</p></div></div><a href="${i.Link_URL}" target="_blank" class="bg-slate-100 text-slate-600 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-2"><span class="hidden md:inline">Download</span> <i class="ph-bold ph-download-simple"></i></a></div>`);
                 } else {
                     document.getElementById('grid-layanan-apps').innerHTML = `<p class="col-span-full text-center text-slate-400 text-sm italic">Belum ada aplikasi.</p>`;
                     document.getElementById('list-layanan-docs').innerHTML = `<p class="p-6 text-center text-slate-400 text-sm italic">Belum ada dokumen.</p>`;
                 }
-                
-                // RENDER VIDEO
+
                 if (globalDB.video && globalDB.video.length > 0) {
-                    const videoHTML = globalDB.video.map((v, idx) => {
+                    document.getElementById('video-container').innerHTML = globalDB.video.map((v, idx) => {
                         let videoId = '';
                         if (v.Link_URL.includes('v=')) videoId = v.Link_URL.split('v=')[1].split('&')[0];
                         else if (v.Link_URL.includes('youtu.be/')) videoId = v.Link_URL.split('youtu.be/')[1];
-                        return `
-                        <div class="snap-center shrink-0 w-80 md:w-96 glass-card bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 group">
-                            <div class="relative h-48 bg-slate-900 overflow-hidden" id="vid-wrapper-${idx}">
-                                <img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700">
-                                <button onclick="playVideo('${videoId}', 'vid-wrapper-${idx}')" class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition">
-                                    <div class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition text-white">
-                                        <i class="ph-fill ph-play text-2xl ml-1"></i>
-                                    </div>
-                                </button>
-                            </div>
-                            <div class="p-5">
-                                <h5 class="font-bold text-slate-900 text-sm line-clamp-2 leading-relaxed" title="${v.Judul}">${v.Judul}</h5>
-                            </div>
-                        </div>`;
+                        return `<div class="snap-center shrink-0 w-80 md:w-96 glass-card bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 group"><div class="relative h-48 bg-slate-900 overflow-hidden" id="vid-wrapper-${idx}"><img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700"><button onclick="playVideo('${videoId}', 'vid-wrapper-${idx}')" class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition"><div class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition text-white"><i class="ph-fill ph-play text-2xl ml-1"></i></div></button></div><div class="p-5"><h5 class="font-bold text-slate-900 text-sm line-clamp-2 leading-relaxed" title="${v.Judul}">${v.Judul}</h5></div></div>`;
                     }).join('');
-                    document.getElementById('video-container').innerHTML = videoHTML;
                 }
-                
-                // RENDER FAQ
+
                 if (globalDB.faq && globalDB.faq.length > 0) {
-                    const faqHTML = globalDB.faq.map((f, idx) => `
-                    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden transition hover:shadow-md">
-                        <button onclick="toggleFAQ('faq-${idx}')" class="w-full flex justify-between items-center text-left p-5 focus:outline-none bg-slate-50 hover:bg-white transition">
-                            <span class="font-bold text-slate-800 text-sm pr-4">${f.Pertanyaan}</span>
-                            <i id="icon-faq-${idx}" class="ph-bold ph-caret-down text-slate-400 transition-transform duration-300"></i>
-                        </button>
-                        <div id="faq-${idx}" class="hidden p-5 pt-0 text-sm text-slate-600 leading-relaxed border-t border-dashed border-slate-100 bg-white">
-                            <div class="pt-4">${f.Jawaban}</div>
-                        </div>
-                    </div>
-                    `).join('');
-                    document.getElementById('faq-container').innerHTML = faqHTML;
+                    document.getElementById('faq-container').innerHTML = globalDB.faq.map((f, idx) => `<div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden transition hover:shadow-md"><button onclick="toggleFAQ('faq-${idx}')" class="w-full flex justify-between items-center text-left p-5 focus:outline-none bg-slate-50 hover:bg-white transition"><span class="font-bold text-slate-800 text-sm pr-4">${f.Pertanyaan}</span><i id="icon-faq-${idx}" class="ph-bold ph-caret-down text-slate-400 transition-transform duration-300"></i></button><div id="faq-${idx}" class="hidden p-5 pt-0 text-sm text-slate-600 leading-relaxed border-t border-dashed border-slate-100 bg-white"><div class="pt-4">${f.Jawaban}</div></div></div>`).join('');
                 }
 
                 if(globalDB.profil && globalDB.profil.length > 0) { const p = globalDB.profil[0]; document.getElementById('container-kepsek').innerHTML = `<div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 bg-white p-8 md:p-12 rounded-[3rem] shadow-xl border border-slate-100 relative overflow-hidden"><div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div><img src="${getImg(p.Foto_Kepsek)}" class="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-[6px] border-blue-50 shadow-inner relative z-10"><div class="text-center md:text-left relative z-10"><span class="text-amber-500 font-bold tracking-widest text-xs uppercase mb-2 block">Kepala Sekolah</span><h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">${p.Nama_Kepsek}</h3><div class="text-slate-600 text-lg leading-loose text-justify whitespace-pre-line relative z-10">"${p.Sambutan}"</div></div></div>`; document.getElementById('teks-visi').innerText = p.Visi||'-'; document.getElementById('teks-misi').innerText = p.Misi||'-'; }
@@ -744,6 +620,3 @@
     </script>
 </body>
 </html>
-
-
-
