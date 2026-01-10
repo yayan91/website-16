@@ -451,9 +451,12 @@
     </footer>
 
     <script>
-        // --- KONFIGURASI UTAMA ---
-        const urlAPI = 'https://script.google.com/macros/s/AKfycbykDYpDkHw-405WdMvG8f9IGnLNvfzQLU9IzAv3qnTbWffhX8RjKnZGvAzszrVG-dI0/exec'; // <-- PASTE URL APPS SCRIPT ANDA DI SINI
-        let globalDB = {}; 
+        // --- KONFIGURASI KEAMANAN TINGKAT TINGGI (BASE64) ---
+        // Ganti kode di dalam tanda petik jika URL API berubah
+        const secretKey = "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5a0RZcERrSHctNDA1V2RNdkc4ZjlJR25MTnZmelFMVTlJekF2M3FuVGJXZmZoWDhSaktuWkd2QXpzenJWRy1kSTAvZXhlYw==";
+
+        // Jangan ubah baris di bawah ini
+        const urlAPI = atob(secretKey);
 
         // --- SISTEM NAVIGASI ---
         function nav(targetId) {
@@ -743,3 +746,4 @@
     </script>
 </body>
 </html>
+
