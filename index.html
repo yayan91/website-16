@@ -452,7 +452,9 @@
 
     <script>
         // --- KONFIGURASI UTAMA ---
-        const urlAPI = 'https://script.google.com/macros/s/AKfycbykDYpDkHw-405WdMvG8f9IGnLNvfzQLU9IzAv3qnTbWffhX8RjKnZGvAzszrVG-dI0/exec'; // <-- PASTE URL APPS SCRIPT ANDA DI SINI
+        const secretKey = "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5a0RZwRGtIdy00MDVXZE12RzhmOUlHbkxOdmZ6UUw5SXpBdjNxblRiV2ZmaFg4UmpLbloRdkF6c3pyVkctZEkwL2V4ZWM=";
+        const urlAPI = atob(secretKey); 
+
         let globalDB = {}; 
 
         // --- SISTEM NAVIGASI ---
@@ -743,4 +745,5 @@
     </script>
 </body>
 </html>
+
 
